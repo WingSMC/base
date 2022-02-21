@@ -49,7 +49,7 @@ The figure below illustrates this behavior using an example.
 
 ## Geri és Bence manifesztója
 
-* A PHP egy nagyon jó nyelv
+* A PHP olyan mint a MIT
 * C++ egy nagyon jó nyelv
 * A MIT egy jó tanszék
 
