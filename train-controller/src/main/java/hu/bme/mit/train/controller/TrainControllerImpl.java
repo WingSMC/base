@@ -14,10 +14,12 @@ public class TrainControllerImpl implements TrainController {
 	public TrainControllerImpl()
 {
 	Timer t = new Timer();
-	t.schedule(() -> {
-		followSpeed();
-	}, 2*60*1000);
-
+	t.schedule(new TimerTask() {
+		@Override
+		public void run() {
+			followSpeed();
+		}
+	}, 500);	
 }	
 	@Override
 	public void followSpeed() {
