@@ -8,12 +8,26 @@ public class TrainControllerImpl implements TrainController {
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 
+	public TrainControllerImpl() {
+		Thread t = new Thread(() -> {
+			Thread.currentThread().setDaemon(true);
+			try {
+				while (true) {
+					followSpeed();
+					Thread.sleep(500);
+				}
+			} catch (InterruptedException e) {
+			}
+		});
+		t.start();
+	}
+
 	@Override
 	public void followSpeed() {
 		if (referenceSpeed < 0) {
 			referenceSpeed = 0;
 		} else {
-			if(referenceSpeed+step > 0) {
+			if (referenceSpeed + step > 0) {
 				referenceSpeed += step;
 			} else {
 				referenceSpeed = 0;
@@ -32,11 +46,12 @@ public class TrainControllerImpl implements TrainController {
 	public void setSpeedLimit(int speedLimit) {
 		this.speedLimit = speedLimit;
 		enforceSpeedLimit();
-		
+
 	}
 
 	private void enforceSpeedLimit() {
-		System.out.println("Attempted to exceed the speed limit of" + speedLimit + "km/h by " + (referenceSpeed - speedLimit) + "km/h");
+		System.out.println(
+				"Attempted to exceed the speed limit of " + speedLimit + "km/h by " + (referenceSpeed - speedLimit) + "km/h");
 		if (referenceSpeed > speedLimit) {
 			referenceSpeed = speedLimit;
 		}
