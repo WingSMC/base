@@ -50,7 +50,7 @@ public class TrainControllerImpl implements TrainController {
 	}
 
 	private void enforceSpeedLimit() {
-		System.out.println("Attempted to exceed the speed limit of" + speedLimit + "km/h by " + (referenceSpeed - speedLimit) + "km/h");
+		System.err.println("Attempted to exceed the speed limit of" + speedLimit + "km/h by " + (referenceSpeed - speedLimit) + "km/h");
 		if (referenceSpeed > speedLimit) {
 			referenceSpeed = speedLimit;
 		}
